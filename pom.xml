@@ -12,7 +12,6 @@
     <artifactId>yqfw-common-third-tencent</artifactId>
 
     <properties>
-        <yqfw.version>0.0.5-SNAPSHOT</yqfw.version>
     </properties>
 
     <dependencies>
