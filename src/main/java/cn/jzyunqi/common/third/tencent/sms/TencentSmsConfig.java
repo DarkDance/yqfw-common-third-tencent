@@ -63,7 +63,7 @@ public class TencentSmsConfig {
 
                     ClientRequest.Builder amendRequest = ClientRequest.from(request);
                     if (request.method() == HttpMethod.GET) {
-                        Map<String, String> actionHeaders = getSignHttpHeaders(request.method(), request.url(), request.url().getQuery(), action, auth);
+                        Map<String, String> actionHeaders = getSignHttpHeaders(request.method(), request.url().getQuery(), action, auth);
                         amendRequest.headers(headers -> headers.setAll(actionHeaders));
                     } else {
                         amendRequest.body((outputMessage, context) -> request.body().insert(new ClientHttpRequestDecorator(outputMessage) {
@@ -71,7 +71,7 @@ public class TencentSmsConfig {
                             public @NonNull Mono<Void> writeWith(@NonNull Publisher<? extends DataBuffer> body) {
                                 return DataBufferUtils.join(body).flatMap(buffer -> {
                                     String bodyStr = buffer.toString(StringUtilPlus.UTF_8);
-                                    Map<String, String> actionHeaders = getSignHttpHeaders(request.method(), request.url(), bodyStr, action, auth);
+                                    Map<String, String> actionHeaders = getSignHttpHeaders(request.method(), bodyStr, action, auth);
                                     getHeaders().setAll(actionHeaders);
                                     return super.writeWith(Mono.just(buffer));
                                 });
@@ -87,7 +87,7 @@ public class TencentSmsConfig {
         return factory.createClient(TencentSmsSendApiProxy.class);
     }
 
-    private Map<String, String> getSignHttpHeaders(HttpMethod method, URI url, String bodyOrQueryStr, Action action, TencentSmsAuth auth) {
+    private Map<String, String> getSignHttpHeaders(HttpMethod method, String bodyOrQueryStr, Action action, TencentSmsAuth auth) {
         long timestamp = System.currentTimeMillis() / 1000;
         String currentDate = LocalDateTime.ofEpochSecond(timestamp, 0, DateTimeUtilPlus.GMT0_ZONE_OFFSET).format(DateTimeUtilPlus.SYSTEM_DATE_FORMAT);
         Map<String, String> actionHeaders = getActionHeaders(action, timestamp);
@@ -113,7 +113,7 @@ public class TencentSmsConfig {
             String secretSigning = DigestUtilPlus.Mac.sign(END_INDICATE, DigestUtilPlus.Hex.decodeHex(secretService), DigestUtilPlus.MacAlgo.H_SHA256, Boolean.FALSE);
             signature = DigestUtilPlus.Mac.sign(stringToSign, DigestUtilPlus.Hex.decodeHex(secretSigning), DigestUtilPlus.MacAlgo.H_SHA256, Boolean.FALSE);
         } catch (Exception e) {
-            log.error("======Tencent request [{}] signature error=======", url, e);
+            log.error("======Tencent request [{}][{}] signature error=======", auth.getSecretId(), action, e);
         }
         // ************* 步骤 4：拼接 Authorization *************
         String authorization = String.format("%s Credential=%s/%s, SignedHeaders=%s, Signature=%s", ALGORITHM, auth.getSecretId(), credentialScope, signedHeaders, signature);
