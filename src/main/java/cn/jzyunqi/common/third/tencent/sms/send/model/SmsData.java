@@ -1,4 +1,4 @@
-package cn.jzyunqi.common.third.tencent.model;
+package cn.jzyunqi.common.third.tencent.sms.send.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class SmsResultData implements Serializable {
+public class SmsData implements Serializable {
     @Serial
     private static final long serialVersionUID = 137009828227821839L;
 

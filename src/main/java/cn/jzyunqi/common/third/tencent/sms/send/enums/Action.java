@@ -1,4 +1,4 @@
-package cn.jzyunqi.common.third.tencent.enums;
+package cn.jzyunqi.common.third.tencent.sms.send.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

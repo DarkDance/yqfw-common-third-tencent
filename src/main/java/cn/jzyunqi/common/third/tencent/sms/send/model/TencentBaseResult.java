@@ -1,4 +1,4 @@
-package cn.jzyunqi.common.third.tencent.response;
+package cn.jzyunqi.common.third.tencent.sms.send.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

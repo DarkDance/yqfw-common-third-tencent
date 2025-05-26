@@ -1,6 +1,5 @@
-package cn.jzyunqi.common.third.tencent.response;
+package cn.jzyunqi.common.third.tencent.sms.send.model;
 
-import cn.jzyunqi.common.third.tencent.model.SmsResultData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class SmsResult extends TencentBaseResult {
+public class SmsListData extends TencentBaseResult {
     @Serial
     private static final long serialVersionUID = -3560683449425726791L;
 
@@ -22,5 +21,5 @@ public class SmsResult extends TencentBaseResult {
      * 短信发送状态
      */
     @JsonProperty("SendStatusSet")
-    private List<SmsResultData> sendStatusList;
+    private List<SmsData> sendStatusList;
 }
