@@ -12,11 +12,11 @@ import java.util.List;
  * @author wiiyaya
  * @date 2022/11/30.
  */
-public class TencentSmsStrange implements SmsHelper {
+public class TencentSmsStrategy implements SmsHelper {
 
     private final TencentSmsClient tencentSmsHelper;
 
-    public TencentSmsStrange(TencentSmsClient tencentSmsHelper) {
+    public TencentSmsStrategy(TencentSmsClient tencentSmsHelper) {
         this.tencentSmsHelper = tencentSmsHelper;
     }
 
