@@ -111,34 +111,34 @@ public class ATencentQQCbHttpController {
         return "success";
     }
 
-    private void processSubscribeMessageStatus(BaseDispatchData baseDispatchData) {
+    protected void processSubscribeMessageStatus(BaseDispatchData baseDispatchData) {
     }
 
-    private void processGroupMessageReject(BaseDispatchData baseDispatchData) {
+    protected void processGroupMessageReject(BaseDispatchData baseDispatchData) {
     }
 
-    private void processGroupMessageReceive(BaseDispatchData baseDispatchData) {
+    protected void processGroupMessageReceive(BaseDispatchData baseDispatchData) {
     }
 
-    private void processGroupDelRobot(BaseDispatchData baseDispatchData) {
+    protected void processGroupDelRobot(BaseDispatchData baseDispatchData) {
     }
 
-    private void processGroupAddRobot(BaseDispatchData baseDispatchData) {
+    protected void processGroupAddRobot(BaseDispatchData baseDispatchData) {
     }
 
-    private void processC2CMessageReceive(BaseDispatchData baseDispatchData) {
+    protected void processC2CMessageReceive(BaseDispatchData baseDispatchData) {
     }
 
-    private void processC2CMessageReject(BaseDispatchData baseDispatchData) {
+    protected void processC2CMessageReject(BaseDispatchData baseDispatchData) {
     }
 
-    private void processFriendDel(BaseDispatchData baseDispatchData) {
+    protected void processFriendDel(BaseDispatchData baseDispatchData) {
     }
 
-    private void processFriendAdd(BaseDispatchData baseDispatchData) {
+    protected void processFriendAdd(BaseDispatchData baseDispatchData) {
     }
 
-    private void processC2CMessageCreate(UserMsgData userMsgData) throws BusinessException {
+    protected void processC2CMessageCreate(UserMsgData userMsgData) throws BusinessException {
     }
 
     protected void processGroupAtMessageCreate(GroupAtData groupAtData) throws BusinessException {
