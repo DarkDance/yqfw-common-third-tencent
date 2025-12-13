@@ -1,7 +1,9 @@
 package cn.jzyunqi.common.third.tencent.qq;
 
 import cn.jzyunqi.common.third.tencent.common.TencentHttpExchangeWrapper;
+import cn.jzyunqi.common.third.tencent.qq.robot.TencentQQRobotApi;
 import cn.jzyunqi.common.third.tencent.qq.robot.TencentQQRobotApiProxy;
+import cn.jzyunqi.common.third.tencent.qq.token.TencentQQTokenApi;
 import cn.jzyunqi.common.third.tencent.qq.token.TencentQQTokenApiProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -33,12 +35,22 @@ public class TencentQQConfig {
     }
 
     @Bean
+    public TencentQQTokenApi tencentQQTokenApi() {
+        return new TencentQQTokenApi();
+    }
+
+    @Bean
     public TencentQQTokenApiProxy tencentQQTokenApiProxy(WebClient.Builder webClientBuilder) {
         WebClient webClient = webClientBuilder.clone().build();
         WebClientAdapter webClientAdapter = WebClientAdapter.create(webClient);
         webClientAdapter.setBlockTimeout(Duration.ofSeconds(5));
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(webClientAdapter).build();
         return factory.createClient(TencentQQTokenApiProxy.class);
+    }
+
+    @Bean
+    public TencentQQRobotApi tencentQQRobotApi() {
+        return new TencentQQRobotApi();
     }
 
     @Bean
