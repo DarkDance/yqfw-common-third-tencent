@@ -41,7 +41,7 @@ public class ATencentQQCbHttpController {
      * @param msgCbStr 消息详细
      * @return 根据情况返回回调数据或"failed"或"success"
      */
-    @RequestMapping(consumes = "text/xml", produces = "text/xml")
+    @RequestMapping
     @ResponseBody
     public Object userMessageCallback(@PathVariable String appId, @RequestBody MsgCb msgCb, @RequestBody String msgCbStr, @RequestHeader Map<String, String[]> headers) {
         log.debug("""
