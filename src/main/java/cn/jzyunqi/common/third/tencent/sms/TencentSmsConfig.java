@@ -1,7 +1,7 @@
 package cn.jzyunqi.common.third.tencent.sms;
 
 import cn.jzyunqi.common.third.tencent.common.TencentHttpExchangeWrapper;
-import cn.jzyunqi.common.third.tencent.sms.send.TencentSmsSendApiProxy;
+import cn.jzyunqi.common.third.tencent.sms.send.TencentSmsSenderApiProxy;
 import cn.jzyunqi.common.third.tencent.sms.send.enums.Action;
 import cn.jzyunqi.common.utils.DateTimeUtilPlus;
 import cn.jzyunqi.common.utils.DigestUtilPlus;
@@ -23,7 +23,6 @@ import org.springframework.web.reactive.function.client.support.WebClientAdapter
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 import reactor.core.publisher.Mono;
 
-import java.net.URI;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -53,7 +52,7 @@ public class TencentSmsConfig {
     }
 
     @Bean
-    public TencentSmsSendApiProxy tencentSmsSendApiProxy(WebClient.Builder webClientBuilder, TencentSmsAuthRepository tencentSmsAuthRepository) {
+    public TencentSmsSenderApiProxy tencentSmsSenderApiProxy(WebClient.Builder webClientBuilder, TencentSmsAuthHelper tencentSmsAuthRepository) {
         WebClient webClient = webClientBuilder.clone()
                 //.codecs(WxFormatUtils::jackson2Config)
                 .filter(ExchangeFilterFunction.ofRequestProcessor(request -> {
@@ -84,12 +83,12 @@ public class TencentSmsConfig {
         WebClientAdapter webClientAdapter = WebClientAdapter.create(webClient);
         webClientAdapter.setBlockTimeout(Duration.ofSeconds(5));
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(webClientAdapter).build();
-        return factory.createClient(TencentSmsSendApiProxy.class);
+        return factory.createClient(TencentSmsSenderApiProxy.class);
     }
 
     private Map<String, String> getSignHttpHeaders(HttpMethod method, String bodyOrQueryStr, Action action, TencentSmsAuth auth) {
         long timestamp = System.currentTimeMillis() / 1000;
-        String currentDate = LocalDateTime.ofEpochSecond(timestamp, 0, DateTimeUtilPlus.GMT0_ZONE_OFFSET).format(DateTimeUtilPlus.SYSTEM_DATE_FORMAT);
+        String currentDate = LocalDateTime.ofEpochSecond(timestamp, 0, DateTimeUtilPlus.UTC0_ZONE_OFFSET).format(DateTimeUtilPlus.SYSTEM_DATE_FORMAT);
         Map<String, String> actionHeaders = getActionHeaders(action, timestamp);
 
         // ************* 步骤 1：拼接规范请求串 *************

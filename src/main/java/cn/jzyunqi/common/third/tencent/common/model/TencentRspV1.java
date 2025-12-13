@@ -1,5 +1,6 @@
-package cn.jzyunqi.common.third.tencent.sms.send.model;
+package cn.jzyunqi.common.third.tencent.common.model;
 
+import cn.jzyunqi.common.third.tencent.sms.send.model.TencentBaseResult;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class TencentBaseRsp<T extends TencentBaseResult> implements Serializable {
+public class TencentRspV1<T extends TencentBaseResult> implements Serializable {
     @Serial
     private static final long serialVersionUID = 7409897864136311195L;
 
