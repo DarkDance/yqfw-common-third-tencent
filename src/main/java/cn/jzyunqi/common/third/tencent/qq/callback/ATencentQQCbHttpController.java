@@ -4,7 +4,10 @@ import cn.jzyunqi.common.exception.BusinessException;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQAuth;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQAuthHelper;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQClient;
+import cn.jzyunqi.common.third.tencent.qq.callback.model.BaseDispatchData;
+import cn.jzyunqi.common.third.tencent.qq.callback.model.GroupAtData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.MsgCb;
+import cn.jzyunqi.common.third.tencent.qq.callback.model.UserMsgData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.VerifyData;
 import cn.jzyunqi.common.utils.DigestUtilPlus;
 import cn.jzyunqi.common.utils.StringUtilPlus;
@@ -88,6 +91,56 @@ public class ATencentQQCbHttpController {
             return rsp;
         }
 
+        if (0 == msgCb.getOpCode()) {
+            switch (msgCb.getOpType()) {
+                case "C2C_MESSAGE_CREATE" -> processC2CMessageCreate(objectMapper.convertValue(msgCb.getDispatch(), UserMsgData.class));
+                case "FRIEND_ADD" -> processFriendAdd(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "FRIEND_DEL" -> processFriendDel(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "C2C_MSG_REJECT" -> processC2CMessageReject(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "C2C_MSG_RECEIVE" -> processC2CMessageReceive(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "GROUP_AT_MESSAGE_CREATE" -> processGroupAtMessageCreate(objectMapper.convertValue(msgCb.getDispatch(), GroupAtData.class));
+                case "GROUP_ADD_ROBOT" -> processGroupAddRobot(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "GROUP_DEL_ROBOT" -> processGroupDelRobot(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "GROUP_MSG_RECEIVE" -> processGroupMessageReceive(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "GROUP_MSG_REJECT" -> processGroupMessageReject(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "SUBSCRIBE_MESSAGE_STATUS" -> processSubscribeMessageStatus(objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                default -> {
+                }
+            }
+        }
         return "success";
+    }
+
+    private void processSubscribeMessageStatus(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processGroupMessageReject(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processGroupMessageReceive(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processGroupDelRobot(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processGroupAddRobot(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processC2CMessageReceive(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processC2CMessageReject(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processFriendDel(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processFriendAdd(BaseDispatchData baseDispatchData) {
+    }
+
+    private void processC2CMessageCreate(UserMsgData userMsgData) throws BusinessException {
+    }
+
+    protected void processGroupAtMessageCreate(GroupAtData groupAtData) throws BusinessException {
     }
 }
