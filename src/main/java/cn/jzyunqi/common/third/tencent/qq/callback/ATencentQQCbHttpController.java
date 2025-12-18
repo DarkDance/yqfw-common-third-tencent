@@ -66,7 +66,7 @@ public class ATencentQQCbHttpController {
         TencentQQAuth tencentQQAuth = tencentQQAuthHelper.chooseTencentQQAuth(appId);
         String seed = StringUtilPlus.repeat(tencentQQAuth.getClientSecret(), 2).substring(0, 32);
         // 从seed生成密钥对
-        String[] keyPair = DigestUtilPlus.Ed25519.generateKey(seed.getBytes(StringUtilPlus.UTF_8), 0, Boolean.FALSE);
+        String[] keyPair = DigestUtilPlus.Ed25519.generateKey(seed.getBytes(StringUtilPlus.UTF_8), Boolean.FALSE);
         byte[] publicKey = DigestUtilPlus.Hex.decodeHex(keyPair[0]);
         byte[] privateKey = DigestUtilPlus.Hex.decodeHex(keyPair[1]);
 
