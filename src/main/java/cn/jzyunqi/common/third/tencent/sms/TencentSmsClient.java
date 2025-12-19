@@ -15,6 +15,6 @@ public class TencentSmsClient {
     private static final String END_INDICATE = "tc3_request";
 
     @Resource
-    private TencentSmsSenderApi sender;
+    public TencentSmsSenderApi sender;
 
 }
