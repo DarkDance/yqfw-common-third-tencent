@@ -11,7 +11,6 @@ import cn.jzyunqi.common.third.tencent.qq.callback.model.UserMsgData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.VerifyData;
 import cn.jzyunqi.common.utils.DigestUtilPlus;
 import cn.jzyunqi.common.utils.StringUtilPlus;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
