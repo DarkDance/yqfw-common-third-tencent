@@ -7,7 +7,6 @@ import cn.jzyunqi.common.utils.DateTimeUtilPlus;
 import cn.jzyunqi.common.utils.DigestUtilPlus;
 import cn.jzyunqi.common.utils.StringUtilPlus;
 import lombok.extern.slf4j.Slf4j;
-import org.jspecify.annotations.NonNull;
 import org.reactivestreams.Publisher;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -67,7 +66,7 @@ public class TencentSmsConfig {
                     } else {
                         amendRequest.body((outputMessage, context) -> request.body().insert(new ClientHttpRequestDecorator(outputMessage) {
                             @Override
-                            public @NonNull Mono<Void> writeWith(@NonNull Publisher<? extends DataBuffer> body) {
+                            public Mono<Void> writeWith(Publisher<? extends DataBuffer> body) {
                                 return DataBufferUtils.join(body).flatMap(buffer -> {
                                     String bodyStr = buffer.toString(StringUtilPlus.UTF_8);
                                     Map<String, String> actionHeaders = getSignHttpHeaders(request.method(), bodyStr, action, auth);
