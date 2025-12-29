@@ -1,6 +1,8 @@
 package cn.jzyunqi.common.third.tencent.sms;
 
 import cn.jzyunqi.common.third.tencent.common.TencentHttpExchangeWrapper;
+import cn.jzyunqi.common.third.tencent.qq.token.TencentQQTokenApi;
+import cn.jzyunqi.common.third.tencent.sms.send.TencentSmsSenderApi;
 import cn.jzyunqi.common.third.tencent.sms.send.TencentSmsSenderApiProxy;
 import cn.jzyunqi.common.third.tencent.sms.send.enums.Action;
 import cn.jzyunqi.common.utils.DateTimeUtilPlus;
@@ -48,6 +50,11 @@ public class TencentSmsConfig {
     @Bean
     public TencentSmsClient tencentSmsClient() {
         return new TencentSmsClient();
+    }
+
+    @Bean
+    public TencentSmsSenderApi tencentSmsSenderApi() {
+        return new TencentSmsSenderApi();
     }
 
     @Bean

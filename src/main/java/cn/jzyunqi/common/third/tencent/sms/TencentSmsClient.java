@@ -11,9 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TencentSmsClient {
 
-    private static final String ALGORITHM = "TC3-HMAC-SHA256";
-    private static final String END_INDICATE = "tc3_request";
-
     @Resource
     public TencentSmsSenderApi sender;
 
