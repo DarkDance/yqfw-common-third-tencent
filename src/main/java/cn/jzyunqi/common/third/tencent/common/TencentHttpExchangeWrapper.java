@@ -32,7 +32,7 @@ public class TencentHttpExchangeWrapper {
             resultObj = proceedingJoinPoint.proceed();
         } catch (Throwable e) {
             log.debug("======tencentHttpExchange[{}] proceed throw exception=======", proceedingJoinPoint.getSignature().getName());
-            throw new BusinessException("common_error_tencent_http_exchange_error", e);
+            throw new BusinessException(e, "common_error_tencent_http_exchange_error");
         }
         log.debug("======tencentHttpExchange[{}] end=======", proceedingJoinPoint.getSignature().getName());
         return resultObj;
