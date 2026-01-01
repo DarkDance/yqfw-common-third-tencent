@@ -6,6 +6,7 @@ import cn.jzyunqi.common.third.tencent.qq.TencentQQAuthHelper;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQClient;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.BaseDispatchData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.GroupAtData;
+import cn.jzyunqi.common.third.tencent.qq.callback.model.GroupJoinData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.MsgCb;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.UserMsgData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.VerifyData;
@@ -90,7 +91,7 @@ public class ATencentQQCbHttpController {
                 case "C2C_MSG_REJECT" -> processC2CMessageReject(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
                 case "C2C_MSG_RECEIVE" -> processC2CMessageReceive(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
                 case "GROUP_AT_MESSAGE_CREATE" -> processGroupAtMessageCreate(appId, objectMapper.convertValue(msgCb.getDispatch(), GroupAtData.class));
-                case "GROUP_ADD_ROBOT" -> processGroupAddRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "GROUP_ADD_ROBOT" -> processGroupAddRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), GroupJoinData.class));
                 case "GROUP_DEL_ROBOT" -> processGroupDelRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
                 case "GROUP_MSG_RECEIVE" -> processGroupMessageReceive(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
                 case "GROUP_MSG_REJECT" -> processGroupMessageReject(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
@@ -115,7 +116,7 @@ public class ATencentQQCbHttpController {
     protected void processGroupDelRobot(String appId, BaseDispatchData baseDispatchData) {
     }
 
-    protected void processGroupAddRobot(String appId, BaseDispatchData baseDispatchData) {
+    protected void processGroupAddRobot(String appId, GroupJoinData GroupJoinData) throws BusinessException {
     }
 
     protected void processC2CMessageReceive(String appId, BaseDispatchData baseDispatchData) {
