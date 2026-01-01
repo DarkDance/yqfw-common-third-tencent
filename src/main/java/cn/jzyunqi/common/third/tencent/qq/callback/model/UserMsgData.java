@@ -13,15 +13,39 @@ import java.util.List;
 @Getter
 @Setter
 public class UserMsgData extends BaseDispatchData {
+
+    /**
+     * 平台方消息ID，可以用于被动消息发送
+     */
     private String id;
+
+    /**
+     * 文本消息内容
+     */
     private String content;
+
+    /**
+     * 消息生产时间（RFC3339）
+     */
     private String timestamp;
+
+    /**
+     * 发送者
+     */
     private Author author;
+
+    /**
+     * 富媒体文件附件，文件类型："图片，语音，视频，文件"
+     */
     private List<AttachData> attachments;
 
     @Getter
     @Setter
     public static class Author {
+
+        /**
+         * 用户 openid
+         */
         @JsonProperty("user_openid")
         private String userOpenId;
     }
