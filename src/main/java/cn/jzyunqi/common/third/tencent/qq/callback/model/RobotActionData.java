@@ -10,21 +10,27 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class GroupJoinData extends BaseDispatchData {
+public class RobotActionData extends BaseDispatchData {
 
     /**
-     * 加入的时间戳
+     * 加入/移除的时间戳
      */
     private String timestamp;
 
     /**
-     * 加入群的群openid
+     * 用户 openid(单操作)
+     */
+    @JsonProperty("openid")
+    private String openId;
+
+    /**
+     * 加入/移除群的群openid(群操作)
      */
     @JsonProperty("group_openid")
     private String groupOpenId;
 
     /**
-     * 操作添加机器人进群的群成员openid
+     * 操作添加/移除机器人进群的群成员openid(群操作)
      */
     @JsonProperty("op_member_openid")
     private String opMemberOpenId;

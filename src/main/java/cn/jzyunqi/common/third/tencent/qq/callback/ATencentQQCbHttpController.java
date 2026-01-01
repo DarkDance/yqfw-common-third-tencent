@@ -5,10 +5,9 @@ import cn.jzyunqi.common.third.tencent.qq.TencentQQAuth;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQAuthHelper;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQClient;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.BaseDispatchData;
-import cn.jzyunqi.common.third.tencent.qq.callback.model.GroupAtData;
-import cn.jzyunqi.common.third.tencent.qq.callback.model.GroupJoinData;
+import cn.jzyunqi.common.third.tencent.qq.callback.model.RobotActionData;
+import cn.jzyunqi.common.third.tencent.qq.callback.model.MessageAtData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.MsgCb;
-import cn.jzyunqi.common.third.tencent.qq.callback.model.UserMsgData;
 import cn.jzyunqi.common.third.tencent.qq.callback.model.VerifyData;
 import cn.jzyunqi.common.utils.DigestUtilPlus;
 import cn.jzyunqi.common.utils.StringUtilPlus;
@@ -85,19 +84,17 @@ public class ATencentQQCbHttpController {
         if (0 == msgCb.getOpCode()) {
             //@formatter:off
             switch (msgCb.getOpType()) {
-                case "C2C_MESSAGE_CREATE" -> processC2CMessageCreate(appId, objectMapper.convertValue(msgCb.getDispatch(), UserMsgData.class));
-                case "FRIEND_ADD" -> processFriendAdd(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                case "FRIEND_DEL" -> processFriendDel(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                case "C2C_MSG_REJECT" -> processC2CMessageReject(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                case "C2C_MSG_RECEIVE" -> processC2CMessageReceive(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                case "GROUP_AT_MESSAGE_CREATE" -> processGroupAtMessageCreate(appId, objectMapper.convertValue(msgCb.getDispatch(), GroupAtData.class));
-                case "GROUP_ADD_ROBOT" -> processGroupAddRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), GroupJoinData.class));
-                case "GROUP_DEL_ROBOT" -> processGroupDelRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                case "GROUP_MSG_RECEIVE" -> processGroupMessageReceive(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                case "GROUP_MSG_REJECT" -> processGroupMessageReject(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
+                case "C2C_MESSAGE_CREATE" -> processC2CMessageCreate(appId, objectMapper.convertValue(msgCb.getDispatch(), MessageAtData.class));
+                case "GROUP_AT_MESSAGE_CREATE" -> processGroupAtMessageCreate(appId, objectMapper.convertValue(msgCb.getDispatch(), MessageAtData.class));
+                case "FRIEND_ADD" -> processFriendAdd(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "FRIEND_DEL" -> processFriendDel(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "C2C_MSG_REJECT" -> processC2CMessageReject(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "C2C_MSG_RECEIVE" -> processC2CMessageReceive(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "GROUP_ADD_ROBOT" -> processGroupAddRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "GROUP_DEL_ROBOT" -> processGroupDelRobot(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "GROUP_MSG_RECEIVE" -> processGroupMessageReceive(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
+                case "GROUP_MSG_REJECT" -> processGroupMessageReject(appId, objectMapper.convertValue(msgCb.getDispatch(), RobotActionData.class));
                 case "SUBSCRIBE_MESSAGE_STATUS" -> processSubscribeMessageStatus(appId, objectMapper.convertValue(msgCb.getDispatch(), BaseDispatchData.class));
-                default -> {
-                }
             }
             //@formatter:on
         }
@@ -107,33 +104,33 @@ public class ATencentQQCbHttpController {
     protected void processSubscribeMessageStatus(String appId, BaseDispatchData baseDispatchData) {
     }
 
-    protected void processGroupMessageReject(String appId, BaseDispatchData baseDispatchData) {
+    protected void processGroupMessageReject(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processGroupMessageReceive(String appId, BaseDispatchData baseDispatchData) {
+    protected void processGroupMessageReceive(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processGroupDelRobot(String appId, BaseDispatchData baseDispatchData) {
+    protected void processGroupDelRobot(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processGroupAddRobot(String appId, GroupJoinData GroupJoinData) throws BusinessException {
+    protected void processGroupAddRobot(String appId, RobotActionData robotActionData) throws BusinessException {
     }
 
-    protected void processC2CMessageReceive(String appId, BaseDispatchData baseDispatchData) {
+    protected void processC2CMessageReceive(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processC2CMessageReject(String appId, BaseDispatchData baseDispatchData) {
+    protected void processC2CMessageReject(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processFriendDel(String appId, BaseDispatchData baseDispatchData) {
+    protected void processFriendDel(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processFriendAdd(String appId, BaseDispatchData baseDispatchData) {
+    protected void processFriendAdd(String appId, RobotActionData robotActionData) {
     }
 
-    protected void processC2CMessageCreate(String appId, UserMsgData userMsgData) throws BusinessException {
+    protected void processC2CMessageCreate(String appId, MessageAtData messageAtData) throws BusinessException {
     }
 
-    protected void processGroupAtMessageCreate(String appId, GroupAtData groupAtData) throws BusinessException {
+    protected void processGroupAtMessageCreate(String appId, MessageAtData messageAtData) throws BusinessException {
     }
 }

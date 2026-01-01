@@ -12,15 +12,14 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class UserMsgData extends BaseDispatchData {
-
+public class MessageAtData extends BaseDispatchData {
     /**
-     * 平台方消息ID，可以用于被动消息发送
+     * 平台方消息 ID，可以用于被动消息发送
      */
     private String id;
 
     /**
-     * 文本消息内容
+     * 消息内容
      */
     private String content;
 
@@ -35,6 +34,12 @@ public class UserMsgData extends BaseDispatchData {
     private Author author;
 
     /**
+     * 群聊的 openid(群操作)
+     */
+    @JsonProperty("group_openid")
+    private String groupOpenId;
+
+    /**
      * 富媒体文件附件，文件类型："图片，语音，视频，文件"
      */
     private List<AttachData> attachments;
@@ -44,9 +49,15 @@ public class UserMsgData extends BaseDispatchData {
     public static class Author {
 
         /**
-         * 用户 openid
+         * 用户 openid(单操作)
          */
         @JsonProperty("user_openid")
         private String userOpenId;
+
+        /**
+         * 用户在本群的 member_openid(群操作)
+         */
+        @JsonProperty("member_openid")
+        private String memberOpenId;
     }
 }
