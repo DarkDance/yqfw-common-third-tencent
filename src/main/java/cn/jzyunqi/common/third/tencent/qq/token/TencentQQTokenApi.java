@@ -40,6 +40,7 @@ public class TencentQQTokenApi {
                 ClientTokenData clientTokenData = tencentQQTokenApiProxy.getClientToken(tokenRequest);
                 ThirdTokenRedisDto clientToken = new ThirdTokenRedisDto();
                 clientToken.setToken(clientTokenData.getAccessToken()); //获取到的凭证
+                clientToken.setCreateTime(LocalDateTime.now());
                 clientToken.setExpireTime(LocalDateTime.now().plusSeconds(clientTokenData.getExpiresIn()).minusSeconds(120)); //凭证有效时间，单位：秒
 
                 redisHelper.vPut(TencentCache.THIRD_TENCENT_QQ_V, tencentQQAppId, clientToken);
