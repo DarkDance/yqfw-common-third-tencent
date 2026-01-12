@@ -4,6 +4,7 @@ import cn.jzyunqi.common.third.tencent.common.model.TencentRspV2;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
+@ToString
 public class MsgSendRsp implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

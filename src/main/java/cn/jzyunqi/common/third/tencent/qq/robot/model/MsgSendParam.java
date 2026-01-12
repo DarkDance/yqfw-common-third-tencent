@@ -3,6 +3,7 @@ package cn.jzyunqi.common.third.tencent.qq.robot.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author wiiyaya
@@ -10,6 +11,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class MsgSendParam {
     /**
      * 消息类型: 0 是文本，2 是 markdown， 3 ark，4 embed，7 media 富媒体
