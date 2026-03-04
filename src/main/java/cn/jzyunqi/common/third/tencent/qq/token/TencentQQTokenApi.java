@@ -1,7 +1,7 @@
 package cn.jzyunqi.common.third.tencent.qq.token;
 
 import cn.jzyunqi.common.exception.BusinessException;
-import cn.jzyunqi.common.feature.redis.RedisHelper;
+import cn.jzyunqi.common.support.spring.redis.RedisHelper;
 import cn.jzyunqi.common.model.ThirdTokenRedisDto;
 import cn.jzyunqi.common.third.tencent.common.constant.TencentCache;
 import cn.jzyunqi.common.third.tencent.qq.TencentQQAuth;
