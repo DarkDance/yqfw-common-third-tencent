@@ -1,5 +1,6 @@
 package cn.jzyunqi.common.third.tencent.common.constant;
 
+import cn.jzyunqi.common.model.ThirdTokenRedisDto;
 import cn.jzyunqi.common.support.spring.redis.Cache;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,10 +18,12 @@ public enum TencentCache implements Cache {
     /**
      * QQ机器人缓存
      */
-    THIRD_TENCENT_QQ_V(Duration.ofHours(3), Boolean.FALSE),
+    THIRD_TENCENT_QQ_V(Duration.ofHours(3), Boolean.FALSE, ThirdTokenRedisDto.class),
     ;
 
     private final Duration expiration;
 
     private final Boolean autoRenew;
+
+    private final Object valueType;
 }

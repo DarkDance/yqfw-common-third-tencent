@@ -46,7 +46,7 @@ public class TencentQQTokenApi {
                 redisHelper.vPut(TencentCache.THIRD_TENCENT_QQ_V, tencentQQAppId, clientToken);
                 return clientTokenData.getAccessToken();
             } else {
-                ThirdTokenRedisDto clientToken = (ThirdTokenRedisDto) redisHelper.vGet(TencentCache.THIRD_TENCENT_QQ_V, tencentQQAppId);
+                ThirdTokenRedisDto clientToken = redisHelper.vGet(TencentCache.THIRD_TENCENT_QQ_V, tencentQQAppId);
                 if (clientToken != null && LocalDateTime.now().isBefore(clientToken.getExpireTime())) {
                     return clientToken.getToken();
                 } else {
